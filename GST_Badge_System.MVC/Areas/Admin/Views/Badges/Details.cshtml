@@ -1,0 +1,82 @@
+﻿@model GST_Badge_System.Model.Badge
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div class="container badge-details">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="badge-image" src="@Model.Badge_Image" />
+            </div>
+            <div class="col-md-8">
+                <div>
+                    <h4>Badge Details</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Badge_Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Badge_Name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Badge_Descript)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Badge_Descript)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Badge_Notes)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Badge_Notes)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Badge_ActivateDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Badge_ActivateDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Badge_RetireDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Badge_RetireDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Badge_Image)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Badge_Image)
+                        </dd>
+                    </dl>
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Badge_Id }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

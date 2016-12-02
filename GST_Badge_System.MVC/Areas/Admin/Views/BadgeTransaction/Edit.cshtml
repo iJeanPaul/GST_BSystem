@@ -1,0 +1,43 @@
+﻿@model GST_Badge_System.Model.BadgeTransaction
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>BadgeTransaction</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Who Gets the badge:</label>
+            <div class="col-md-10">
+                @Html.DropDownList("selectedUserID", (SelectList)ViewBag.usersListItems, "--- Select Receiver ---", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Which Badge:</label>
+            <div class="col-md-10">
+                @Html.DropDownList("selectedBadgeID", (SelectList)ViewBag.badgesListItems, "--- Select Badge ---", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Comment:</label>
+            <div class="col-md-10">
+                <textarea name="comment" id="comment" rows="5" class="form-control">@Model.Badge_Comment</textarea>
+                @Html.ValidationMessage("comment", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

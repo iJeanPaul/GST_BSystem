@@ -1,0 +1,115 @@
+﻿@model GST_Badge_System.Model.Badge
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>Badge</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Badge_Id)
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Badge_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Badge_Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Badge_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+ 
+            <div class="form-group">
+                @Html.LabelFor(model => model.Badge_Descript, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Badge_Descript, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Badge_Descript, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Badge_Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Badge_Notes, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Badge_Notes, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Badge_ActivateDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Badge_ActivateDate, new { htmlAttributes = new { @class = "form-control needdatepicker" } })
+                    @Html.ValidationMessageFor(model => model.Badge_ActivateDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Badge_RetireDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Badge_RetireDate, new { htmlAttributes = new { @class = "form-control needdatepicker" } })
+                    @Html.ValidationMessageFor(model => model.Badge_RetireDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Badge_Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Badge_Image, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Badge_Image, "", new { @class = "text-danger" })
+                </div>
+            </div>
+   
+            <div class="form-group">
+                <label class="control-label col-md-2">Badge Type:</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("selectedBadgeType", (SelectList)ViewBag.badgesTypeListItems, "--- Select Badge Type ---", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Badge Give Type:</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("selectedBadgeGiveType", (SelectList)ViewBag.badgesGiveTypeListItems, "--- Select Badge Give Type ---", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Badge Status:</label>
+                <div class="col-md-10">
+                    @Html.DropDownList("selectedStatus", (SelectList)ViewBag.statusListItems, "--- Select Badge Status ---", new { @class = "form-control" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+        $(".needdatepicker").datepicker();
+    });
+</script>

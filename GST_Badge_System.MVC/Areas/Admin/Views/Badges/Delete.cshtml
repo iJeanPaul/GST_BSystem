@@ -1,0 +1,65 @@
+﻿@model GST_Badge_System.Model.Badge
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Badge</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Badge_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Badge_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Badge_Descript)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Badge_Descript)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Badge_Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Badge_Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Badge_ActivateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Badge_ActivateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Badge_RetireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Badge_RetireDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Badge_Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Badge_Image)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

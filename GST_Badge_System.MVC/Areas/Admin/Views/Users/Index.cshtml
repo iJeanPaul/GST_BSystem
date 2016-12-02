@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Current Badge Bank</h2>
+<a>
+    @Html.ActionLink("Create New", "Create")
+</a>
+<div>
+    <table class="table-striped table-hover row-border" id="usersTable">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Badges Received</th>
+                <th>Badges Sent</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#usersTable").DataTable({
+            "ajax": {
+                "url": "/Users/LoadUsersData",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "User_Name", "autoWidth": true, "bSortable": true, "bSearchable": true },
+                { "data": "User_Email", "autoWidth": true, "bSortable": true, "bSearchable": true },
+                { "data": "User_Type", "autoWidth": true, "bSortable": true, "bSearchable": true },
+                {
+                    "mData": "totalReceived", "autoWidth": true, "bSortable": false, "bSearchable": true,
+                    "mRender": function (data, type, full) {
+                        if (data == 0)
+                            return "No Badge Received Yet";
+                        else
+                            return data;
+                    }
+                },
+                {
+                    "mData": "totalSent", "autoWidth": true, "bSortable": false, "bSearchable": true,
+                    "mRender": function (data, type, full) {
+                        if (data == 0)
+                            return "No Badge Sent Yet";
+                        else
+                            return data;
+                    }
+                },
+
+                {
+                    "mData": "User_Id",
+                    "bSearchable": false,
+                    "bSortable": false,
+                    "mRender": function (data, type, full) {
+                        return '<a href=' + '@Url.Action("Edit", "Users")?ID=' + data + '>Edit</a>'
+                                + ' | <a href=' + '@Url.Action("Details", "Users")?ID=' + data + '>Details</a>'
+                                + ' | <a href=' + '@Url.Action("Delete", "Users")?ID=' + data + '>Delete</a>';
+                    }
+                }
+            ]
+        });
+    });
+    </script>
+}
+
+

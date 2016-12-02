@@ -1,0 +1,3 @@
+﻿window.HomeModule = (function($){
+
+})(jQuery);

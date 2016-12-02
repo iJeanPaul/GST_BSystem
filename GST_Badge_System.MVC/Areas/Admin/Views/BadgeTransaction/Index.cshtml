@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List Of All Transactions</h2>
+<a>
+    @Html.ActionLink("Create New", "Create")
+</a>
+<div>
+    <table class="table-striped table-hover row-border" id="usersTable">
+        <thead>
+            <tr>
+                <th>Receiver</th>
+                <th>Sender</th>
+                <th>Badge Name</th>
+                <th>Comment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#usersTable").DataTable({
+            "ajax": {
+                "url": "/BadgeTransaction/LoadTransactionsData",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "Receiver_Object.User_Name", "autoWidth": true, "bSortable": true, "bSearchable": true },
+                { "data": "Sender_Object.User_Name", "autoWidth": true, "bSortable": true, "bSearchable": true },
+                { "data": "Badge.Badge_Name", "autoWidth": true, "bSortable": true, "bSearchable": true },
+                { "data": "Badge_Comment", "autoWidth": true, "bSortable": true, "bSearchable": true },
+
+                {
+                    "mData": "bt_id",
+                    "bSearchable": false,
+                    "bSortable": false,
+                    "mRender": function (data, type, full) {
+                        return '<a href=' + '@Url.Action("Edit", "BadgeTransaction")?ID=' + data + '>Edit</a>'
+                                + ' | <a href=' + '@Url.Action("Details", "BadgeTransaction")?ID=' + data + '>Details</a>'
+                                + ' | <a href=' + '@Url.Action("Delete", "BadgeTransaction")?ID=' + data + '>Delete</a>';
+                    }
+                }
+            ]
+        });
+    });
+    </script>
+}
+
+
+
+

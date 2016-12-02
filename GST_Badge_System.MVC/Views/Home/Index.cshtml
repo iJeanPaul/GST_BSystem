@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <div>Logged in as: @User.Identity.GetUserName()</div>
+}
+else
+{
+    <div>Not Logged In Yet - Login</div>
+}

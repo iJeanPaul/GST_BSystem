@@ -1,0 +1,52 @@
+﻿@model GST_Badge_System.Model.BadgeTransaction
+
+<div>
+    <h4>BadgeTransaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reciever)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reciever)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Badge_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Badge_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Badge_Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Badge_Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BTrans_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BTrans_Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bt_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

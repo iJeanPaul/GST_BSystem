@@ -1,5 +1,6 @@
 ﻿using GST_Badge_System.DAO;
 using GST_Badge_System.Model;
+using GST_Badge_System.MVC.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace GST_Badge_System.MVC.Areas.Admin.Controllers
             var badges = badgedao.list();
             foreach (Badge badge in badges)
             {
-                listItems_badges.Add(new SelectListItem() { Value = badge.Badge_Name, Text = badge.Badge_Name });
+                listItems_badges.Add(new SelectListItem() { Value = badge.Badge_Name, Text = badge.Badge_Id.ToString() });
             }
             ViewBag.badgesListItems = new SelectList(listItems_badges, "Text", "Value");
 
@@ -51,10 +52,30 @@ namespace GST_Badge_System.MVC.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(string selectedUserID, string selectedBadgeID, string comment)
         {
-            BadgeTransactionDAO bt = new BadgeTransactionDAO();
+            BadgeTransactionDAO bt = new BadgeTransactionDAO();   
 
-            // TODO: we need to use the currently logged user instead of the hardcoded Andy
-            bt.addBadgeTransaction("andy.harbert@oc.edu", selectedUserID, selectedBadgeID, comment);
+            try
+            {
+                // TODO: we need to use the currently logged user instead of the hardcoded Andy
+                bt.addBadgeTransaction("jeanpaul.iradukunda@eagles.oc.edu", selectedUserID, Convert.ToInt32(selectedBadgeID), comment);
+                string senderEmail = "jeanpaul.iradukunda@eagles.oc.edu";   // TODO: this does not have to be hardcoded
+                var badgesender = new UserDAO()[senderEmail];
+                string receiverEmail = selectedUserID;
+                var badgeReceiver = new UserDAO()[receiverEmail];
+                string bt_comment = comment;
+                // var badge = new BadgeDAO()[selectedBadgeID];
+                var badgedao = new BadgeDAO();
+                var badge = badgedao.findBadgeGivenId( Convert.ToInt32(selectedBadgeID));
+
+                EmailSender emailSender = new EmailSender();
+                emailSender.sendEmail("sending", senderEmail, receiverEmail, badge, comment);
+                emailSender.sendEmail("receiving", senderEmail, receiverEmail, badge, comment);
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.ToString());
+            }
             return RedirectToAction("Index");
         }
 

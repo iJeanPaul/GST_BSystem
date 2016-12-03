@@ -15,15 +15,16 @@ namespace GST_Badge_System.DAO
 
 
 		// add badge transaction: More like send a badge
-		public int addBadgeTransaction(string sender, string receiver, string badge, string comment)
+		public int addBadgeTransaction(string sender, string receiver, int badge_id, string comment)
 		{
-			if( !String.IsNullOrEmpty(sender) && !String.IsNullOrEmpty(receiver) && 
-				!String.IsNullOrEmpty(badge) && !String.IsNullOrEmpty(comment))
+			if( !String.IsNullOrEmpty(sender) && !String.IsNullOrEmpty(receiver) &&
+                !String.IsNullOrEmpty(badge_id.ToString()) && !String.IsNullOrEmpty(comment))
 			{
 				var badgesender = new UserDAO()[sender].User_Id;
 				var badgeReceiver = new UserDAO()[receiver].User_Id;
-				var sentbadge = new BadgeDAO()[badge].Badge_Id;
-				var sendcomment = comment;
+                // var sentbadge = new BadgeDAO()[badge].Badge_Id;
+                var sentbadge = badge_id;
+                var sendcomment = comment;
 				var datetime = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
 
 				using(IDbConnection conn = new SqlConnection(connectionString))

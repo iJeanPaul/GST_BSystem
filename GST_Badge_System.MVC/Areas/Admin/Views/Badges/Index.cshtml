@@ -1,26 +1,38 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    if (@ViewBag.role == "adm")
+    {
+        <h2>Current Badge Bank</h2>
+            <a>
+                @Html.ActionLink("Create New", "Create")
+            </a>
+            <div>
+                <table class="table-striped table-hover row-border" id="badgesTable">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Give Type</th>
+                            <th>Current Status</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+    }
+    else if (@ViewBag.role == "stu")
+    {
+        <div>@ViewBag.username,</div>
+        <div>You don't have permission to view this page!</div>
+    }
+}
+else
+{
+    <div>You need to login to use our system</div>
 }
 
-<h2>Current Badge Bank</h2>
-<a>
-    @Html.ActionLink("Create New", "Create")
-</a>
-<div>
-    <table class="table-striped table-hover row-border" id="badgesTable">
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Give Type</th>
-                <th>Current Status</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-    </table>
-</div>
 
 <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
 @section Scripts {

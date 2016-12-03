@@ -13,8 +13,19 @@ namespace GST_Badge_System.MVC.Areas.Admin.Controllers
         // GET: Admin/Badges
         public ActionResult Index()
         {
-            // get a list of all badges in the badge bank
+            string user_role = "";
+            if (User.Identity.IsAuthenticated)
+            {
+                var test = User.Identity.Name;
+                // We need to know who this is, so that we can determin which role this user has
+                User user = new UserDAO()[User.Identity.Name];
+                user_role = user.User_Type;
+                ViewBag.username = user.User_Name;
+            }
+            ViewBag.role = user_role;
 
+            // TODO: get a list of all badges in the badge bank
+            // TODO: We need to this only when the logged in user is an admin
             BadgeDAO badgedao = new BadgeDAO();
             List<Badge> badges = badgedao.list();
             UserDAO userdao = new UserDAO();

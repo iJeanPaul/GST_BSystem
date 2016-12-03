@@ -1,26 +1,42 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <div>Logged in as: @User.Identity.GetUserName()</div>
+    <div>Hi @ViewBag.username,</div>
+    if (@ViewBag.role == "adm")
+    {
+        <h2>Current Badge Bank</h2>
+        <a>
+            @Html.ActionLink("Create New", "Create")
+        </a>
+        <div>
+            <table class="table-striped table-hover row-border" id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Badges Received</th>
+                        <th>Badges Sent</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    }
+    else if (@ViewBag.role == "stu")
+    {
+        <div>@ViewBag.username,</div>
+        <div>You don't have permission to view this page!</div>
+    }
+}
+else
+{
+    <div>Hey There - You are Not Logged In Yet - Login</div>
+    <div>You need to login first - there is a login link in the right corner</div>
+    <div>Thank you!</div>
 }
 
-<h2>Current Badge Bank</h2>
-<a>
-    @Html.ActionLink("Create New", "Create")
-</a>
-<div>
-    <table class="table-striped table-hover row-border" id="usersTable">
-        <thead>
-            <tr>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Badges Received</th>
-                <th>Badges Sent</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-    </table>
-</div>
 
 <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
 @section Scripts {

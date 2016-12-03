@@ -1,9 +1,38 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <div>Logged in as: @User.Identity.GetUserName()</div>
+    <div>Hi @ViewBag.username,</div>
+    if (@ViewBag.role == "adm")
+    {
+        <div>Since you are an admin, you can: </div>
+
+        <div class="row">
+            <div class="activity-item col-xs-4">
+                <div  class="activity-item-content btn btn-default">
+                    @Html.ActionLink("Manage Users", "Index", "Users", new { area = "Admin" }, null)
+                </div>
+            </div>
+            <div class="activity-item col-xs-4">
+                <div class="activity-item-content btn btn-default">
+                    @Html.ActionLink("Manage Badge Bank", "Index", "Badges", new { area = "Admin" }, null)
+                </div>
+            </div>
+            <div class="activity-item col-xs-4">
+                <div class="activity-item-content btn btn-default">
+                    @Html.ActionLink("Manage BadeTransactions", "Index", "BadgeTransaction", new { area = "Admin" }, null)
+                </div>
+            </div>
+        </div>        
+    }
+    else if (@ViewBag.role == "stu")
+    {
+        <div>You are a stundet lol - Good to see you!! <br></div>
+        @Html.Partial("~/Views/Common/CardList.cshtml")
+    }
 }
 else
 {
-    <div>Not Logged In Yet - Login</div>
+    <div>Hey There - You are Not Logged In Yet - Login</div>
+    <div>You need to login first - there is a login link in the right corner</div>
+    <div>Thank you!</div>
 }

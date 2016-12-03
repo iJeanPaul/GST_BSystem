@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GST_Badge_System.DAO;
+using GST_Badge_System.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,10 +13,16 @@ namespace GST_Badge_System.MVC.Controllers
     {
         public ActionResult Index()
         {
+            string user_role = "";
             if (User.Identity.IsAuthenticated)
             {
                 var test = User.Identity.Name;
+                // We need to know who this is, so that we can determin which role this user has
+                User user = new UserDAO()[User.Identity.Name];
+                user_role = user.User_Type;
+                ViewBag.username = user.User_Name;  
             }
+            ViewBag.role = user_role;
             return View();
         }
 

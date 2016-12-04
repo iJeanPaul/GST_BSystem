@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using GST_Badge_System.Model
 @if (Request.IsAuthenticated)
 {
     <div>Hi @ViewBag.username,</div>
@@ -7,27 +8,66 @@
         <div>Since you are an admin, you can: </div>
 
         <div class="row">
-            <div class="activity-item col-xs-4">
+            <div class="activity-item col-xs-3">
                 <div  class="activity-item-content btn btn-default">
                     @Html.ActionLink("Manage Users", "Index", "Users", new { area = "Admin" }, null)
                 </div>
             </div>
-            <div class="activity-item col-xs-4">
+            <div class="activity-item col-xs-3">
                 <div class="activity-item-content btn btn-default">
                     @Html.ActionLink("Manage Badge Bank", "Index", "Badges", new { area = "Admin" }, null)
                 </div>
             </div>
-            <div class="activity-item col-xs-4">
+            <div class="activity-item col-xs-3">
                 <div class="activity-item-content btn btn-default">
                     @Html.ActionLink("Manage BadeTransactions", "Index", "BadgeTransaction", new { area = "Admin" }, null)
+                </div>
+            </div>
+            <div class="activity-item col-xs-3">
+                <div class="activity-item-content btn btn-default">
+                    @Html.ActionLink("Send A Badge", "Create", "BadgeTransaction", new { area = "Admin" }, null)
                 </div>
             </div>
         </div>        
     }
     else if (@ViewBag.role == "stu")
     {
-        <div>You are a stundet lol - Good to see you!! <br></div>
-        @Html.Partial("~/Views/Common/CardList.cshtml")
+        <br>
+        <div>
+            <div>Received Badges:</div>
+            @if (@ViewBag.user.totalReceived == 0)
+            {
+                <div>You Have Not Received Any Bagdes Yet!</div>
+            }
+            else
+            {
+                <div class="row">
+                    @foreach (BadgeTransaction item in @ViewBag.user.receivedBadges)
+                    {
+                        /**/
+                        @Html.Partial("~/Views/Common/BadgeCard.cshtml", item)
+                    }
+                </div>
+            }
+        </div>
+
+        <div>
+            <div>Sent Badges:</div>
+            @if (@ViewBag.user.totalSent == 0)
+            {
+                <div>You Have Not Sent Any Bagdes Yet!</div>
+            }
+            else
+            {
+                <div class="row">
+                    @foreach (BadgeTransaction item in @ViewBag.user.sentBadges)
+                    {
+                        /**/
+                        @Html.Partial("~/Views/Common/BadgeCard.cshtml", item)
+                    }
+                </div>
+            }
+        </div>
     }
 }
 else

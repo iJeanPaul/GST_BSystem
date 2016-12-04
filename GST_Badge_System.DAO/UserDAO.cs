@@ -128,6 +128,17 @@ namespace GST_Badge_System.DAO
             return allUsers;
         }
 
+        // this method will return a user with all the detailed info about them
+        public User getUserAndAllDetails(string username)
+        {
+            User user = this[username];
+            user.receivedBadges = getUserReceivedBadges(user.User_Id);
+            user.sentBadges = getUserSentBadges(user.User_Id);
+            user.totalReceived = user.receivedBadges.Count();
+            user.totalSent = user.sentBadges.Count();
+            return user;
+        }
+
         // this function gets a list of badges received by a given user
         public List<BadgeTransaction> getUserReceivedBadges(int user_Id)
         {

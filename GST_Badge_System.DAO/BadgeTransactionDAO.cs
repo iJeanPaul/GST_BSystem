@@ -100,7 +100,14 @@ namespace GST_Badge_System.DAO
             using (var conn = new SqlConnection(connectionString))
             {
                 string sql = @"select * from BadgeTransaction where bt_id = @BT_Id";
-                return conn.Query<BadgeTransaction>(sql, new { BT_Id = Id }).FirstOrDefault();
+                var bt = conn.Query<BadgeTransaction>(sql, new { BT_Id = Id }).FirstOrDefault();
+                var sender = new UserDAO().findPersonGivenId(bt.Sender);
+                var receiver = new UserDAO().findPersonGivenId(bt.Reciever);
+                var badge = new BadgeDAO().findBadgeGivenId(bt.Badge_Id);
+                bt.Sender_Object = sender;
+                bt.Receiver_Object = receiver;
+                bt.Badge = badge;
+                return bt;
             }
         }
 

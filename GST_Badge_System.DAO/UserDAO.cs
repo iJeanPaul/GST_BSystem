@@ -38,9 +38,7 @@ namespace GST_Badge_System.DAO
             {
                 dbConnection.Open();
                 Model.User person = dbConnection.Query<Model.User>("SELECT * FROM USERS WHERE User_Id = @User_Id", new { User_Id = id }).First();
-
                 return person;
-
             }
         }
 

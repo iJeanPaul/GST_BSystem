@@ -4,18 +4,18 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 
-@using (Html.BeginForm("Create", "BadgeTransaction", FormMethod.Post)) 
+@using (Html.BeginForm("SendBadge", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>BadgeTransaction</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <label class = "control-label col-md-2" >Who Gets the badge:</label>
+            <label class="control-label col-md-2">Who Gets the badge:</label>
             <div class="col-md-10">
-                @Html.DropDownList("selectedUserID",(SelectList)ViewBag.usersListItems,"--- Select Receiver ---", new { @class = "form-control" })
+                @Html.DropDownList("selectedUserID", (SelectList)ViewBag.usersListItems, "--- Select Receiver ---", new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
@@ -28,7 +28,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Comment:</label>
             <div class="col-md-10">
-                <textarea name="comment" id="comment" rows="5" class = "form-control"></textarea>
+                <textarea name="comment" id="comment" rows="5" class="form-control"></textarea>
                 @Html.ValidationMessage("comment", "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,5 +42,5 @@
 }
 
 <div>
-    @Html.ActionLink("< Back to List", "Index", null, new { @class = "back-link btn btn-default" })
+    @Html.ActionLink("< Back to List", "Index", null, new { @class = "back-link btn btn-default"})
 </div>

@@ -1,0 +1,27 @@
+﻿@model GST_Badge_System.Model.BadgeTransaction
+
+<div class="badge-details">
+    <h3>Badge Details</h3>
+    <div class="row">
+        <div class="image-section col-xs-5">
+            <div class="img-container">
+                <img class="img-rounded" src='@Model.Badge.Badge_Image' />
+            </div>
+        </div>
+        <div class="details-section col-xs-7">
+            <div class="details-container">
+                <p>Badge Name: @Model.Badge.Badge_Name</p>
+                <p>Date Sent: @Model.BTrans_Date</p>
+                <p>Sender: @Model.Sender_Object.User_Name</p>
+                <p>Receiver: @Model.Receiver_Object.User_Name</p>
+                <p>Description: @Model.Badge.Badge_Descript</p>
+                <p>Sender's Comment: @Model.Badge_Comment</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.bt_id }) | *@
+    @Html.ActionLink("< Back", "Index", null, new { @class = "back-link btn btn-default"})
+</p>

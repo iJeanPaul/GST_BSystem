@@ -1,13 +1,15 @@
 ﻿@model GST_Badge_System.Model.BadgeTransaction
 
 <div class="badge-item col-xs-2">
-    <div class="badge-item-content btn-default">
-        <div class="badge-item-image">
-            <img class="image" src='@Model.Badge.Badge_Image' />
+    <a href="@Url.Action("BadgeDetails", "Home", new { id = @Model.bt_id })">
+        <div class="badge-item-content btn-default">
+            <div class="badge-item-image">
+                <img class="image img-rounded" src='@Model.Badge.Badge_Image' />
+            </div>
+            <div class="badge-name">
+                @Model.Badge.Badge_Name
+            </div>
         </div>
-        <div class="badge-name">
-            @Model.Badge.Badge_Name
-        </div>
-    </div>
+    </a>
 </div>
 

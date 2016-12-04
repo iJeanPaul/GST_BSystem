@@ -17,7 +17,7 @@ namespace GST_Badge_System.MVC.Areas.Admin.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var test = User.Identity.Name;
-                // We need to know who this is, so that we can determin which role this user has
+                // We need to know who this is, so that we can determine which role this user has
                 User user = new UserDAO()[User.Identity.Name];
                 user_role = user.User_Type;
                 ViewBag.username = user.User_Name;

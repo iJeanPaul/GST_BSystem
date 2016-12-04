@@ -28,12 +28,15 @@
                     @Html.ActionLink("Send A Badge", "Create", "BadgeTransaction", new { area = "Admin" }, null)
                 </div>
             </div>
-        </div>        
+        </div>
     }
     else if (@ViewBag.role == "stu")
     {
+        <div class="btn btn-default">
+            @Html.ActionLink("Send A Badge", "SendBadge", "Home", new { area = "" }, null)
+        </div>
         <br>
-        <div>
+        <div class="badges-list">
             <div>Received Badges:</div>
             @if (@ViewBag.user.totalReceived == 0)
             {
@@ -51,7 +54,7 @@
             }
         </div>
 
-        <div>
+        <div class="badges-list">
             <div>Sent Badges:</div>
             @if (@ViewBag.user.totalSent == 0)
             {

@@ -11,7 +11,10 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Badge</h4>
+        <div class="admin-title">
+            <h1>Create A New Badge</h1>
+        </div>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -92,7 +95,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("< Back to List", "Index", null, new { @class = "btn btn-default"})
 </div>
 
 <script type="text/javascript">

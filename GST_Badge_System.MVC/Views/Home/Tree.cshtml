@@ -1,0 +1,25 @@
+﻿@model IEnumerable<GST_Badge_System.Model.BadgeTransaction>
+
+@using Microsoft.AspNet.Identity
+@using GST_Badge_System.Model
+@if (Request.IsAuthenticated)
+{
+    <div>
+        <div class="btn btn-default">
+            @Html.ActionLink("Send A Badge", "SendBadge", "Home", new { area = "" }, null)
+        </div>
+        <div class="btn btn-default">
+            @Html.ActionLink("Grid View", "Index", "Home", new { area = "" }, null)
+        </div>
+    </div>
+
+    <h3>Tree View Goes On This Page</h3>
+}
+else
+{
+    <div class="welcome-page">
+        <h1>Welcome to GST System!</h1>
+        <h1>You Need to Login First</h1>
+        <h1>Thank You!</h1>
+    </div>
+}

@@ -72,8 +72,8 @@
                     </dl>
                 </div>
                 <p>
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.Badge_Id }) |
-                    @Html.ActionLink("Back to List", "Index")
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Badge_Id }, new { @class="btn btn-default"}) |
+                    @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-default"})
                 </p>
             </div>
         </div>

@@ -122,3 +122,16 @@ textarea {
 .back-link {
     margin-top: 50px;
 }
+
+/*
+    for the welcome page
+*/
+.welcome-page{
+    text-align: center !important;   
+}
+.create-button{
+    padding-bottom: 20px;
+}
+.admin-title{
+    text-align: center;
+}

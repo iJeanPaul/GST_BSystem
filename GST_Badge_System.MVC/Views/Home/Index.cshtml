@@ -2,7 +2,6 @@
 @using GST_Badge_System.Model
 @if (Request.IsAuthenticated)
 {
-    <div>Hi @ViewBag.username,</div>
     if (@ViewBag.role == "adm")
     {
         <div>Since you are an admin, you can: </div>
@@ -32,12 +31,17 @@
     }
     else if (@ViewBag.role == "stu")
     {
-        <div class="btn btn-default">
-            @Html.ActionLink("Send A Badge", "SendBadge", "Home", new { area = "" }, null)
+        <div>
+            <div class="btn btn-default">
+                @Html.ActionLink("Send A Badge", "SendBadge", "Home", new { area = "" }, null)
+            </div>
+            <div class="btn btn-default">
+                @Html.ActionLink("View The Tree", "Tree", "Home", new { area = "" }, null)
+            </div>
         </div>
         <br>
         <div class="badges-list">
-            <div>Received Badges:</div>
+            <div><h2>Received Badges:</h2></div>
             @if (@ViewBag.user.totalReceived == 0)
             {
                 <div>You Have Not Received Any Bagdes Yet!</div>
@@ -55,7 +59,7 @@
         </div>
 
         <div class="badges-list">
-            <div>Sent Badges:</div>
+            <div><h2>Sent Badges:</h2></div>
             @if (@ViewBag.user.totalSent == 0)
             {
                 <div>You Have Not Sent Any Bagdes Yet!</div>
@@ -75,7 +79,9 @@
 }
 else
 {
-    <div>Hey There - You are Not Logged In Yet - Login</div>
-    <div>You need to login first - there is a login link in the right corner</div>
-    <div>Thank you!</div>
+    <div class="welcome-page">
+        <h1>Welcome to GST System!</h1>
+        <h1>You Need to Login First</h1>
+        <h1>Thank You!</h1>
+    </div>
 }

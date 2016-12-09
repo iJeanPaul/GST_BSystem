@@ -20,7 +20,7 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>Badge</h4>
+            <h1>Edit A Badge</h1>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Badge_Id)

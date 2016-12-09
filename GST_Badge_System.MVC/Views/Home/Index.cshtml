@@ -4,30 +4,81 @@
 {
     if (@ViewBag.role == "adm")
     {
-        <div>Since you are an admin, you can: </div>
+        @*
 
+    <div>Since you are an admin, you can: </div>
+    <div class="row">
+        <div class="activity-item col-xs-3">
+            <div  class="activity-item-content btn btn-default">
+                @Html.ActionLink("Manage Users", "Index", "Users", new { area = "Admin" }, null)
+            </div>
+        </div>
+        <div class="activity-item col-xs-3">
+            <div class="activity-item-content btn btn-default">
+                @Html.ActionLink("Manage Badge Bank", "Index", "Badges", new { area = "Admin" }, null)
+            </div>
+        </div>
+        <div class="activity-item col-xs-3">
+            <div class="activity-item-content btn btn-default">
+                @Html.ActionLink("Manage BadeTransactions", "Index", "BadgeTransaction", new { area = "Admin" }, null)
+            </div>
+        </div>
+        <div class="activity-item col-xs-3">
+            <div class="activity-item-content btn btn-default">
+                @Html.ActionLink("Send A Badge", "Create", "BadgeTransaction", new { area = "Admin" }, null)
+            </div>
+        </div>
+    </div>
+        *@
+        
+    <div class="admin-activities">
         <div class="row">
             <div class="activity-item col-xs-3">
-                <div  class="activity-item-content btn btn-default">
-                    @Html.ActionLink("Manage Users", "Index", "Users", new { area = "Admin" }, null)
+                <div class="activity-content">
+                    <a class="icon" href="/Admin/Users">
+                        <span class="fa fa-3x fa-users"></span>
+                    </a>
+                    <div class="title">
+                        <p>Users</p>
+                    </div>
                 </div>
             </div>
+
             <div class="activity-item col-xs-3">
-                <div class="activity-item-content btn btn-default">
-                    @Html.ActionLink("Manage Badge Bank", "Index", "Badges", new { area = "Admin" }, null)
+                <div class="activity-content">
+                    <a class="icon" href="/Admin/Badges">
+                        <span class="fa fa-3x fa-id-badge"></span>
+                    </a>
+                    <div class="title">
+                        <p>Badge Bank</p>
+                    </div>
                 </div>
             </div>
+
             <div class="activity-item col-xs-3">
-                <div class="activity-item-content btn btn-default">
-                    @Html.ActionLink("Manage BadeTransactions", "Index", "BadgeTransaction", new { area = "Admin" }, null)
+                <div class="activity-content">
+                    <a class="icon" href="/Admin/BadgeTransaction">
+                        <span class="fa fa-3x fa-certificate"></span>
+                    </a>
+                    <div class="title">
+                        <p>Sent-Received Badges</p>
+                    </div>
                 </div>
             </div>
+
             <div class="activity-item col-xs-3">
-                <div class="activity-item-content btn btn-default">
-                    @Html.ActionLink("Send A Badge", "Create", "BadgeTransaction", new { area = "Admin" }, null)
+                <div class="activity-content">
+                    <a class="icon" href="/Admin/BadgeTransaction/Create">
+                        <span class="fa fa-3x fa-paper-plane"></span>
+                    </a>
+                    <div class="title">
+                        <p>Send A Badge</p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+        
     }
     else if (@ViewBag.role == "stu")
     {
@@ -80,8 +131,7 @@
 else
 {
     <div class="welcome-page">
-        <h1>Welcome to GST System!</h1>
-        <h1>You Need to Login First</h1>
-        <h1>Thank You!</h1>
+        <h1>Welcome to Graduate School of Theology</h1>
+        @Html.ActionLink("LOGIN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-default lgn-btn" })
     </div>
 }

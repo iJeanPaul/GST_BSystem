@@ -79,7 +79,11 @@ namespace GST_Badge_System.MVC.Controllers
             {
                 // TODO: we need to use the currently logged user instead of the hardcoded Andy
                 bt.addBadgeTransaction("jeanpaul.iradukunda@eagles.oc.edu", selectedUserID, Convert.ToInt32(selectedBadgeID), comment);
-                string senderEmail = "jeanpaul.iradukunda@eagles.oc.edu";   // TODO: this does not have to be hardcoded
+
+                // string senderEmail = "jeanpaul.iradukunda@eagles.oc.edu";   // TODO: this does not have to be hardcoded
+                User user = new UserDAO()[User.Identity.Name];
+                string senderEmail = user.User_Email;
+
                 var badgesender = new UserDAO()[senderEmail];
                 string receiverEmail = selectedUserID;
                 var badgeReceiver = new UserDAO()[receiverEmail];

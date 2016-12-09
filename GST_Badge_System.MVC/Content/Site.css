@@ -1,21 +1,28 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: Calibri;
+    font-size: 16px;
     
 }
 .navbar {
     background: #660000;
     height: 80px;
+    opacity: 0.9;
 }
 .greeting{
     color: white;
-    font-size: 16px;
-    margin-top: 15px;
-    font-weight: 700;
+    font-size: 19px;
+    margin-top: 13px;
+    font-weight: 200;
+    opacity: 0.9;
+    font-family: Calibri;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
+    clear:both;
+    overflow:visible;
     margin-top: 60px;
     margin-bottom: 30px;
     background: #f1f1f1;
@@ -73,7 +80,7 @@ textarea {
 
 /*
     this if for admin welcome page
-*/
+
 .activity-item {
     padding: 15px;
     text-align: center;
@@ -85,6 +92,7 @@ textarea {
     height: 50px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
 }
+    */
 
 .badges-list{   
 
@@ -99,7 +107,7 @@ textarea {
 
 }
 .badge-details .image-section{
-    height: 250px;
+    height: 250px; 
 }
 .badge-details .details-section{
     height: 250px;
@@ -125,13 +133,91 @@ textarea {
 
 /*
     for the welcome page
-*/
-.welcome-page{
+*/ 
+.welcome-page{ 
     text-align: center !important;   
 }
+.lgn-btn {
+    height: 50px;
+    font-size: 24px;
+    margin-top: 50px; 
+    font-family: Calibri; 
+}
+.welcome-page >h1{
+    font-weight: 500; 
+}
+
+.lgn-window {     
+    text-align: center;
+}
+.lgn-window .lgn-window-content {
+
+} 
+
+
+
 .create-button{
     padding-bottom: 20px;
 }
 .admin-title{
     text-align: center;
+}
+
+
+/*
+    this is for the admin index page
+*/
+.admin-activities {
+    text-align: center; 
+    padding-top: 50px;
+
+}
+.activity-item{
+    height: 200px;  
+}
+
+.activity-item .icon{
+    padding: 10px;
+    
+}
+.activity-content {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    padding: 20px;
+    font-family: Calibri; 
+}
+
+.activity-content:hover {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 #660000;
+    color: #660000;
+}
+
+.activity-content .title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.fa-3x {
+    height: 100px;
+    width: 100px;
+    font-size: 6em;
+    border-radius: 100%;
+}
+
+.logo {
+    padding-top: 15px;
+    margin-left: -30px;
+}
+.logo-img {
+   height: 50px;
+}
+
+/*
+    this is for the tree view
+*/
+.tree-image {
+    width: 100%;
+    height: 800px;
+}
+.tree-view-title {
+    text-align:right;
 }

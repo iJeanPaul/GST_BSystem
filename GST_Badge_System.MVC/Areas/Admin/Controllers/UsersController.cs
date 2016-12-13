@@ -51,9 +51,12 @@ namespace GST_Badge_System.MVC.Areas.Admin.Controllers
 
         public ActionResult Details (int ID)
         {
+            /*
             UserDAO usersdao = new UserDAO();
             User user = usersdao.findPersonGivenId(ID);
             return View(user);
+            */
+            return RedirectToAction("Tree");
         }
 
         public ActionResult Delete (int ID)
@@ -82,6 +85,16 @@ namespace GST_Badge_System.MVC.Areas.Admin.Controllers
             UserDAO usersdao = new UserDAO();
             usersdao.addUser(user);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Tree()
+        {
+            return View();
+        }
+
+        public ActionResult Reports()
+        {
+            return View();
         }
     }
 }

@@ -31,7 +31,6 @@ namespace GST_Badge_System.MVC.Areas.Admin.Controllers
             UserDAO userdao = new UserDAO();
             List<User> users = userdao.list();
             return View();
-            // return Content("List of postssssssss----");
         }
 
        public ActionResult LoadBadgesData()
@@ -59,13 +58,28 @@ namespace GST_Badge_System.MVC.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(Badge badge, string selectedBadgeType, string selectedBadgeGiveType, string selectedStatus)
         {
-            badge.BadgeType = Convert.ToInt32(selectedBadgeType);
-            badge.BadgeGiveType = Convert.ToInt32(selectedBadgeGiveType);
-            badge.BadgeStatus = Convert.ToInt32(selectedStatus);
-            BadgeDAO badgedao = new BadgeDAO();
-            badgedao.update(badge);
+            if (ModelState.IsValid)
+            {
+                badge.BadgeType = Convert.ToInt32(selectedBadgeType);
+                badge.BadgeGiveType = Convert.ToInt32(selectedBadgeGiveType);
+                badge.BadgeStatus = Convert.ToInt32(selectedStatus);
+                BadgeDAO badgedao = new BadgeDAO();
+                badgedao.update(badge);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {   
+                // get the current badge
+                BadgeDAO badgedao = new BadgeDAO();
+                Model.Badge badgeToEdit = badgedao.findBadgeGivenId(badge.Badge_Id);
+                List<SelectListItem>[] result = new List<SelectListItem>[3];
+                this.getDropdownValues(result);
+                ViewBag.badgesTypeListItems = new SelectList(result[0], "Text", "Value", badgeToEdit.BadgeType);
+                ViewBag.badgesGiveTypeListItems = new SelectList(result[1], "Text", "Value", badgeToEdit.BadgeGiveType);
+                ViewBag.statusListItems = new SelectList(result[2], "Text", "Value", badgeToEdit.BadgeStatus);
+                return View(badgeToEdit);
+            }
         }
 
         [HttpGet]
@@ -107,12 +121,36 @@ namespace GST_Badge_System.MVC.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Badge badge, string selectedBadgeType, string selectedBadgeGiveType, string selectedStatus)
         {
-            badge.BadgeType = Convert.ToInt32(selectedBadgeType);
-            badge.BadgeGiveType = Convert.ToInt32(selectedBadgeGiveType);
-            badge.BadgeStatus = Convert.ToInt32(selectedStatus);
-            BadgeDAO badgedao = new BadgeDAO();
-            badgedao.create(badge);
-            return RedirectToAction("Index"); 
+            // bool validSelection = true;
+
+            // TODO: need to think about a better validation way for dropdowns!!!
+            if (string.IsNullOrEmpty(selectedBadgeType))
+            {
+                selectedBadgeType = "3";
+            }
+            if (string.IsNullOrEmpty(selectedBadgeGiveType))
+            {
+                selectedBadgeGiveType = "4";
+            }
+            if (string.IsNullOrEmpty(selectedStatus))
+            {
+                selectedStatus = "1";
+            }
+
+            if (ModelState.IsValid)
+            {
+                badge.BadgeType = Convert.ToInt32(selectedBadgeType);
+                badge.BadgeGiveType = Convert.ToInt32(selectedBadgeGiveType);
+                badge.BadgeStatus = Convert.ToInt32(selectedStatus);
+                BadgeDAO badgedao = new BadgeDAO();
+                badgedao.create(badge);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Create");
+            }
+
         }
 
         public void getDropdownValues(List<SelectListItem>[] result)

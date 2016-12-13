@@ -98,7 +98,8 @@ namespace GST_Badge_System.DAO
                                               "Badge_Notes=@Badge_Notes,"+
                                               "Badge_Image=@Badge_Image,"+
                                               "Badge_ActivateDate=@Badge_ActivateDate,"+
-                                              "Badge_RetireDate=@Badge_RetireDate"+
+                                              "Badge_RetireDate=@Badge_RetireDate,"+
+                                              "BadgeType=@BadgeType" + 
                               " WHERE Badge_Id= @Badge_Id", badge);
                 return null;
             }

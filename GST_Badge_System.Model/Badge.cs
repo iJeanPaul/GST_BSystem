@@ -10,7 +10,11 @@ namespace GST_Badge_System.Model
     {
         [Key]
         public int Badge_Id { get; set; }
+
+        [Required]
         public string Badge_Name { get; set; }
+
+        [Required]
         public string Badge_Descript { get; set; }
         public string Badge_Notes { get; set; }
         public DateTime Badge_ActivateDate { get; set; }

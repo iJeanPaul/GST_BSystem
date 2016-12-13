@@ -1,14 +1,16 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <div>Logged in as: @User.Identity.GetUserName()</div>
-    <div>Hi @ViewBag.username,</div>
     if (@ViewBag.role == "adm")
     {
-        <h2>Current Badge Bank</h2>
-        <a>
-            @Html.ActionLink("Create New", "Create")
-        </a>
+        <div class="admin-title">
+            <h1>Current Users</h1>
+        </div>
+
+        <div class="create-button">
+            <a>@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })</a>
+        </div>
+        
         <div>
             <table class="table-striped table-hover row-border" id="usersTable">
                 <thead>

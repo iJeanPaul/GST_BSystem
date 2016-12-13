@@ -20,11 +20,11 @@ namespace GST_Badge_System.MVC.Helpers
             // TODO: We need to use a differnt email here, maybe!!
             var credential = new NetworkCredential
             {
-                UserName = "eamail",  // replace with valid value
-                Password = "password"  // replace with valid value
+                UserName = "gst.notifier@gmail.com",  // replace with valid value
+                Password = "gsttemp001"  // replace with valid value
             };
             client.Credentials = credential;
-            from = new MailAddress("email", "GST Notifier");
+            from = new MailAddress("gst.notifier@gmail.com", "GST Notifier");
         }
 
         /*
